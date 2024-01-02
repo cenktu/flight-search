@@ -1,6 +1,7 @@
 package com.cenktu.flightsearch.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,11 +13,13 @@ public class Flight {
     @Column(name = "id",nullable = false)
     private Long id;
 
-    @Column(name = "departure_airport",nullable = false)
-    private String departureAirport;
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
+    @JoinColumn(name = "departure_airport_id",nullable = false)
+    private Airport departureAirport;
 
-    @Column(name = "arrival_airport",nullable = false)
-    private String arrivalAirport;
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
+    @JoinColumn(name = "arrival_airport_id",nullable = false)
+    private Airport arrivalAirport;
 
     @Column(name = "departure_time",nullable = false)
     private LocalDateTime departureTime;
@@ -35,19 +38,19 @@ public class Flight {
         this.id = id;
     }
 
-    public String getDepartureAirport() {
+    public Airport getDepartureAirport() {
         return departureAirport;
     }
 
-    public void setDepartureAirport(String departureAirport) {
+    public void setDepartureAirport(Airport departureAirport) {
         this.departureAirport = departureAirport;
     }
 
-    public String getArrivalAirport() {
+    public Airport getArrivalAirport() {
         return arrivalAirport;
     }
 
-    public void setArrivalAirport(String arrivalAirport) {
+    public void setArrivalAirport(Airport arrivalAirport) {
         this.arrivalAirport = arrivalAirport;
     }
 

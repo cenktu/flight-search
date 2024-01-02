@@ -21,8 +21,8 @@ public class AirportService {
         return airportDAO.findAll();
     }
 
-    public Optional<Airport> getSingleAirport(Long airportId) {
-        return airportDAO.findById(airportId);
+    public Airport getSingleAirport(Long airportId) {
+        return airportDAO.findById(airportId).orElse(null);
     }
 
     public Airport updateAirport(Long airportId, Airport updatedAirport) {
